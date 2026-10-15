@@ -1,45 +1,39 @@
-# LiteMesh homepage review
+# LiteMesh 项目主页评审版
 
-Online review copy of the redesigned LiteMesh project homepage.
+本仓库用于展示和评审重新设计的 LiteMesh 项目主页。
 
-- Review website: https://ljq13505-sudo.github.io/LiteMesh-homepage/
-- Original project website: https://ochenglino.github.io/LiteMesh-homepage/
-- Original homepage source: https://github.com/ochenglino/LiteMesh-homepage
-- Algorithm repository: https://github.com/ochenglino/LiteMesh
+- [在线评审页面](https://ljq13505-sudo.github.io/LiteMesh-homepage/)
+- [原项目主页](https://ochenglino.github.io/LiteMesh-homepage/)
+- [原主页源代码](https://github.com/ochenglino/LiteMesh-homepage)
+- [算法仓库](https://github.com/ochenglino/LiteMesh)
 
-This repository is used to review the homepage redesign. Project authors,
-affiliations, research text, captions, citation placeholder, and footer follow
-the original project website. It does not replace the original project website.
+页面中的项目作者、所属机构、研究文字、图注、引用占位内容和页脚均沿用原项目主页。本仓库用于主页改版评审，不替代原项目主页。
 
-## Review versions
+## 版本管理
 
-- `main` contains the latest review version and is the GitHub Pages publishing branch.
-- `review-v1` marks the first published review version.
-- Future review milestones can be saved as `review-v2`, `review-v3`, and so on.
-- Tags preserve source history; separate online URLs for older versions can be added when needed.
+- `main` 分支保存最新评审版本，也是 GitHub Pages 的发布分支。
+- `review-v1` 标签保存首次上线的评审版本。
+- 后续重要版本可依次使用 `review-v2`、`review-v3` 等标签保存。
+- 标签用于保留对应版本的源代码；如需同时在线展示历史版本，可再添加独立访问地址。
 
-Check `git remote -v` before pushing: `origin` is this review repository and
-`upstream` is the original homepage repository.
+推送前可运行 `git remote -v` 检查远程仓库：`origin` 指向本评审仓库，`upstream` 指向原主页仓库。
 
-## Local preview
+## 本地预览
 
-Open `index.html` directly, or run the following in the repository directory:
+可直接打开 `index.html`，或在仓库目录运行：
 
 ```sh
 python -m http.server 8010 --bind 127.0.0.1
 ```
 
-Then open http://127.0.0.1:8010/ .
+然后访问 [本地预览页面](http://127.0.0.1:8010/)。
 
-## Assets and design references
+## 素材与设计参考
 
-- Original homepage layout and project assets: https://github.com/ochenglino/LiteMesh-homepage
-- CWF academic-page reference: https://ruixu.me/html/CWF/index.html
-- Typography reference: https://github.com/eliahuhorwitz/Academic-project-page-template
-- Section-navigation reference: https://vision-banana.github.io/
-- Local Inter fonts are distributed under the SIL Open Font License; see `fonts/OFL.txt`.
+- [原主页布局及项目素材](https://github.com/ochenglino/LiteMesh-homepage)
+- [CWF 学术项目主页参考](https://ruixu.me/html/CWF/index.html)
+- [字体与排版参考](https://github.com/eliahuhorwitz/Academic-project-page-template)
+- [分区导航参考](https://vision-banana.github.io/)
+- 本地使用的 Inter 字体遵循 SIL 开放字体许可证，详见 [字体许可证](fonts/OFL.txt)。
 
-High-resolution figures are exported from the supplied original project PDFs.
-The introduction uses the original muted, autoplaying, looping MP4. The longer
-presentation video is not included. PDF source copies and local working notes
-are excluded from publication.
+高清图片由提供的项目原始 PDF 导出。Introduction 部分使用原始 MP4 视频，以静音、自动播放、循环播放的方式展示。较长的演示视频未纳入页面，PDF 原件和本地工作说明也未纳入发布内容。
