@@ -13,7 +13,8 @@
 
 - `main` 分支保存最新评审版本，也是 GitHub Pages 的发布分支。
 - `review-v1` 标签保存首次上线的评审版本。
-- 后续重要版本可依次使用 `review-v2`、`review-v3` 等标签保存。
+- `review-v2` 标签保存第二版（2026 年 10 月 18 日）：重新从“网页资料”中的原始 PDF 导出高清图片，并将 720p 循环视频替换为由 4K 原视频制作的网页播放版本。
+- 后续重要版本可依次使用 `review-v3`、`review-v4` 等标签保存。
 - 标签用于保留对应版本的源代码；如需同时在线展示历史版本，可再添加独立访问地址。
 
 推送前可运行 `git remote -v` 检查远程仓库：`origin` 指向本评审仓库，`upstream` 指向原主页仓库。
@@ -36,4 +37,11 @@ python -m http.server 8010 --bind 127.0.0.1
 - 分区导航参考：https://vision-banana.github.io/
 - Inter 字体许可证（SIL 开放字体许可证）：https://github.com/ljq13505-sudo/LiteMesh-homepage/blob/main/fonts/OFL.txt
 
-高清图片由提供的项目原始 PDF 导出。Introduction 部分使用原始 MP4 视频，以静音、自动播放、循环播放的方式展示。较长的演示视频未纳入页面，PDF 原件和本地工作说明也未纳入发布内容。
+第二版素材来自本地“网页资料”文件夹：
+
+- `teaser.pdf`、`CAD_features.pdf`、`weak_features.pdf` 和 `CWFvsOurs.pdf` 均按原始 PDF 的裁剪区域重新导出为宽 5760 像素的 PNG，保留原图内容与标注。
+- Introduction 使用 `Teaser-Video.mp4` 制作的 3840×2160、30 fps、H.264 网页播放版本，保留约 66 秒的完整内容，以静音、自动播放、循环播放的方式展示，并优化为可边加载边播放。
+- 图片和视频链接带有第二版缓存标记，避免浏览器继续使用旧素材。
+- 4 分 20 秒的 `Method-Video.mp4` 未纳入页面。PDF 原件和本地工作说明也未纳入发布内容。
+
+原始 PDF 与第一版所用原件一致；第二版提高导出像素，原始素材自身的细节上限保持不变。无对应新原件的相关方法对比图沿用第一版。
