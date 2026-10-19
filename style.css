@@ -25,8 +25,9 @@ main > section[id] { scroll-margin-top: calc(var(--nav-height) + 20px); }
 .institution-logos { display: flex; justify-content: center; align-items: center; gap: 34px; margin-bottom: 36px; }
 .institution-logos a { display: flex; width: 104px; height: 104px; align-items: center; justify-content: center; }
 .institution-logos img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.institution-logo-hit img { transform: scale(1.12); }
 h1 { max-width: 1180px; margin: 0 auto 26px; font-family: inherit; font-size: 44px; font-weight: 700; line-height: 1.2; letter-spacing: -1.2px; color: #242424; text-wrap: balance; }
-.authors { max-width: 1120px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 2px 8px; font-size: 20px; font-weight: 500; line-height: 1.75; letter-spacing: -.2px; }
+.authors { max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 24px; font-size: 20px; font-weight: 500; line-height: 1.75; letter-spacing: -.2px; }
 .authors > span { white-space: nowrap; }
 .author-name { color: var(--link); }
 .affiliations { display: flex; flex-wrap: wrap; justify-content: center; gap: 2px 20px; margin: 14px auto 0; font-size: 17px; font-weight: 400; line-height: 1.7; }
@@ -36,7 +37,8 @@ h1 { max-width: 1180px; margin: 0 auto 26px; font-family: inherit; font-size: 44
 .resource-button:hover { background: #202020; border-color: #202020; color: #fff; text-decoration: none; }
 .resource-button:disabled { opacity: .65; cursor: default; }
 .resource-button:disabled:hover { background: var(--ink); border-color: var(--ink); }
-.resource-button svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.resource-button svg { flex: 0 0 auto; width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.resource-button .resource-icon-github { fill: currentColor; stroke: none; }
 .wide-content, .content-width, .text-content { width: min(1360px, calc(100% - 64px)); margin-left: auto; margin-right: auto; }
 .teaser { margin-bottom: 44px; }
 .image-frame { position: relative; display: block; padding: 0; width: 100%; border: 0; background: transparent; border-radius: 6px; transition: transform .25s ease, box-shadow .25s ease; }
@@ -77,7 +79,7 @@ footer p { text-align: center; }
   .institution-logos { margin-bottom: 28px; gap: 28px; }
   .institution-logos a { width: 88px; height: 88px; }
   h1 { font-size: 36px; letter-spacing: -.8px; margin-bottom: 22px; }
-  .authors { font-size: 18px; gap: 1px 6px; }
+  .authors { font-size: 18px; gap: 7px 20px; }
   .affiliations { font-size: 15px; gap: 3px 16px; }
   .wide-content, .content-width, .text-content { width: calc(100% - 40px); }
   .teaser { margin-bottom: 32px; }
@@ -97,7 +99,7 @@ footer p { text-align: center; }
   .institution-logos a { width: 76px; height: 76px; }
   .institution-logos { margin-bottom: 25px; }
   h1 { font-size: 30px; line-height: 1.24; letter-spacing: -.6px; }
-  .authors { font-size: 16px; line-height: 1.85; letter-spacing: -.1px; }
+  .authors { font-size: 16px; line-height: 1.85; letter-spacing: -.1px; gap: 6px 18px; }
   .affiliations { flex-direction: column; font-size: 14px; gap: 3px; margin-top: 14px; }
   .resources { margin-top: 20px; gap: 8px; }
   .resource-button { padding: 7px 15px; font-size: 14px; }
