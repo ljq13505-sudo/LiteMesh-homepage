@@ -1,113 +1,343 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="LiteMesh: An Efficient Quality-Aware Algorithm for Feature-Preserving Triangle Mesh Simplification.">
-  <title>LiteMesh</title>
-  <link rel="icon" href="icon/HIT.png">
-  <link rel="stylesheet" href="fonts/fonts.css?v=7">
-  <link rel="stylesheet" href="style.css?v=11">
-  <script src="page.js?v=6" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LiteMesh — Efficient Quality-Aware Mesh Simplification</title>
+<meta name="description" content="LiteMesh: an efficient quality-aware algorithm for feature-preserving triangle mesh simplification.">
+<link rel="icon" href="assets/HIT.png">
+<link rel="stylesheet" href="fonts/fonts.css?v=demo-20261020">
+<link rel="stylesheet" href="style.css?v=demo-20261020">
 </head>
 <body>
-  <a class="skip-link" href="#abstract">Abstract</a>
-  <header class="hero">
-    <div class="institution-logos" aria-label="Institutions">
-      <a class="institution-logo-hit" href="https://en.hit.edu.cn/" target="_blank" rel="noopener noreferrer" aria-label="Harbin Institute of Technology">
-        <img src="icon/HIT.png" width="1024" height="924" alt="Harbin Institute of Technology logo">
-      </a>
-      <a href="https://www.en.sdu.edu.cn/" target="_blank" rel="noopener noreferrer" aria-label="Shandong University">
-        <img src="icon/SDU.png" width="1024" height="1020" alt="Shandong University logo">
-      </a>
-    </div>
-    <h1>LiteMesh: An Efficient Quality-Aware Algorithm for Feature-Preserving Triangle Mesh Simplification</h1>
-    <div class="authors">
-      <span><a href="https://homepage.hit.edu.cn/mengwenlong?lang=zh" target="_blank" rel="noopener noreferrer">Wenlong Meng</a><sup>1</sup></span>
-      <span><span class="author-name">Xin Lin</span><sup>1</sup></span>
-      <span><span class="author-name">Rui Gao</span><sup>1</sup></span>
-      <span><a href="https://homepage.hit.edu.cn/tzy" target="_blank" rel="noopener noreferrer">Zhiying Tu</a><sup>1</sup></span>
-      <span><a href="http://homepage-hit-edu-cn.ivpn.hit.edu.cn:1080/chudh" target="_blank" rel="noopener noreferrer">Dianhui Chu</a><sup>1</sup></span>
-      <span><a href="http://irc.cs.sdu.edu.cn/~shiqing/index.html" target="_blank" rel="noopener noreferrer">Shiqing Xin</a><sup>2</sup></span>
-      <span><a href="http://irc.cs.sdu.edu.cn/~chtu/index.html" target="_blank" rel="noopener noreferrer">Changhe Tu</a><sup>2</sup></span>
-    </div>
-    <div class="affiliations">
-      <span><sup>1</sup><a href="https://en.hit.edu.cn/" target="_blank" rel="noopener noreferrer">Harbin Institute of Technology</a></span>
-      <span><sup>2</sup><a href="https://www.en.sdu.edu.cn/" target="_blank" rel="noopener noreferrer">Shandong University</a></span>
-    </div>
-    <nav class="resources" aria-label="Project resources">
-      <button class="resource-button" type="button" disabled>
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8z"/><path d="M14 3v5h5M8.5 12h7M8.5 15.5h7M8.5 18h4"/></svg><span>Paper</span>
-      </button>
-      <a class="resource-button" href="https://youtu.be/LrY_mlzDtp0" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2.5" y="4.5" width="19" height="15" rx="4"/><path d="m10 8.5 5.5 3.5-5.5 3.5z" fill="currentColor" stroke="none"/></svg><span>Video</span>
-      </a>
-      <a class="resource-button" href="https://github.com/ochenglino/LiteMesh" target="_blank" rel="noopener noreferrer">
-        <svg class="resource-icon-github" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 .75a11.25 11.25 0 0 0-3.558 21.923c.563.104.768-.244.768-.542 0-.267-.01-.975-.015-1.913-3.13.68-3.79-1.508-3.79-1.508-.512-1.3-1.25-1.646-1.25-1.646-1.022-.7.077-.686.077-.686 1.13.08 1.725 1.16 1.725 1.16 1.005 1.722 2.636 1.225 3.278.937.102-.728.393-1.225.715-1.507-2.498-.285-5.124-1.25-5.124-5.562 0-1.23.44-2.234 1.16-3.022-.116-.285-.503-1.43.11-2.98 0 0 .945-.303 3.094 1.155A10.78 10.78 0 0 1 12 6.18c.956.004 1.918.13 2.817.379 2.148-1.458 3.09-1.155 3.09-1.155.617 1.55.23 2.695.113 2.98.722.788 1.158 1.792 1.158 3.022 0 4.323-2.63 5.274-5.135 5.553.404.35.764 1.042.764 2.1 0 1.518-.014 2.743-.014 3.115 0 .3.202.65.773.54A11.252 11.252 0 0 0 12 .75Z"/></svg><span>Code</span>
-      </a>
-    </nav>
-  </header>
-  <nav class="site-nav" aria-label="Page sections">
-    <div class="site-nav-inner">
-      <div class="site-nav-links">
-        <a class="section-link is-active" href="#abstract" aria-current="location">Abstract</a>
-        <a class="section-link" href="#introduction">Introduction</a>
-        <a class="section-link" href="#results">Results</a>
-        <a class="section-link" href="#bibtex">Citation</a>
-      </div>
-    </div>
+
+<div id="preloader" aria-hidden="true">
+  <div class="pre-inner mono">
+    <span class="pre-name">LiteMesh</span>
+    <span class="pre-count">000</span>
+  </div>
+  <div class="pre-bar"><span></span></div>
+</div>
+
+<header class="bar">
+  <a class="brand" href="#top"><i></i>LiteMesh</a>
+  <span class="venue">Under review · 2026</span>
+  <span class="spacer"></span>
+  <nav class="chips" aria-label="Sections">
+    <a class="chip mono" href="#abstract" data-hover>01 / Abstract</a>
+    <a class="chip mono" href="#method" data-hover>02 / Method</a>
+    <a class="chip mono" href="#results" data-hover>03 / Results</a>
+    <a class="chip mono" href="#citation" data-hover>04 / Citation</a>
   </nav>
-  <main>
-    <figure class="teaser wide-content">
-      <div class="image-frame">
-        <img src="images/teaser-original.png?v=2" width="5760" height="1692" alt="LiteMesh simplification examples on organic shapes and CAD models" fetchpriority="high">
+  <span style="width:6px"></span>
+  <nav class="chips" aria-label="Resources">
+    <button class="chip" type="button" disabled title="Paper is under review">Paper</button>
+    <a class="chip" data-hover href="https://youtu.be/VEXlzHfkB4I" target="_blank" rel="noopener">Video</a>
+    <a class="chip" data-hover href="https://github.com/longwuya/LiteMesh" target="_blank" rel="noopener">Code</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <canvas id="stars" aria-hidden="true"></canvas>
+    <div class="hero-stage">
+      <span class="hero-word left" data-hover><span>Lite</span></span>
+      <div class="hero-object">
+        <div class="cloud-wrap">
+          <canvas id="cloud" aria-label="The 1,000 sample points produced by the optimizer, rotating"></canvas>
+          <span class="cloud-tag mono">1,000 pts · 43 iter · 9.08 s</span>
+        </div>
       </div>
+      <span class="hero-word right" data-hover><span>Mesh</span></span>
+    </div>
+
+    <div class="hero-bottom">
+      <h1 class="hero-sub">An efficient quality-aware algorithm for feature-preserving triangle mesh simplification</h1>
+
+      <div class="hero-foot">
+        <div class="lede">
+          <h2>A unified optimization framework for CAD mesh lightweighting.</h2>
+          <p>A particle-interaction energy coupled with a normal-direction anisotropy term.</p>
+          <div class="cta-row">
+            <a class="cta" href="#results" data-hover>Explore results</a>
+            <a class="cta-arrow" href="#abstract" aria-label="Read the abstract" data-hover>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <path d="M5 12h13M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="scroll-cue mono">
+          <span>Scroll</span>
+          <span class="rule"></span>
+          <span>01 — 04</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="colophon reveal" id="authors" aria-label="Authors and institutions">
+    <div class="col-head">
+      <span class="col-dim"><span>Authors</span></span>
+      <span class="col-ink"><span>and institutions</span></span>
+    </div>
+
+    <ol class="col-list">
+      <li>
+        <span class="col-num col-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round"><circle cx="12" cy="8.1" r="3.5"/><path d="M4.9 19.8c.7-3.6 3.6-5.7 7.1-5.7s6.4 2.1 7.1 5.7"/></svg></span>
+        <div class="col-body">
+          <h3>Seven authors, two labs</h3>
+          <p><a href="https://homepage.hit.edu.cn/mengwenlong?lang=zh" target="_blank" rel="noopener">Wenlong Meng</a><sup>1</sup>, <b>Xin Lin</b><sup>1</sup>, <b>Rui Gao</b><sup>1</sup>, <a href="https://homepage.hit.edu.cn/tzy" target="_blank" rel="noopener">Zhiying Tu</a><sup>1</sup>, <a href="http://homepage-hit-edu-cn.ivpn.hit.edu.cn:1080/chudh" target="_blank" rel="noopener">Dianhui Chu</a><sup>1</sup>, <a href="http://irc.cs.sdu.edu.cn/~shiqing/index.html" target="_blank" rel="noopener">Shiqing Xin</a><sup>2</sup>, <a href="http://irc.cs.sdu.edu.cn/~chtu/index.html" target="_blank" rel="noopener">Changhe Tu</a><sup>2</sup></p>
+        </div>
+      </li>
+      <li>
+        <span class="col-num col-ic"><img src="assets/HIT.png" alt="Harbin Institute of Technology"></span>
+        <div class="col-body">
+          <h3><a href="https://en.hit.edu.cn/" target="_blank" rel="noopener"><sup>1</sup>Harbin Institute of Technology</a></h3>
+          <p>Five of the seven authors</p>
+        </div>
+      </li>
+      <li>
+        <span class="col-num col-ic"><img src="assets/SDU.png" alt="Shandong University"></span>
+        <div class="col-body">
+          <h3><a href="https://www.en.sdu.edu.cn/" target="_blank" rel="noopener"><sup>2</sup>Shandong University</a></h3>
+          <p>Two of the seven authors</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="metrics" aria-label="Run specification">
+    <div>Sample points<b>1,000</b><i>bunny · 43 iter</i></div>
+    <div>Iterations<b>43</b><i>to stop criterion</i></div>
+    <div>Runtime<b>9.08 <span style="font-size:.62em">s</span></b><i>single run</i></div>
+    <div>Baselines<b>QEM · CVT · CWF</b><i>all re-run</i></div>
+    <div>Institutions<b>HIT · SDU</b><i>2 labs</i></div>
+    <div>Status<b>Under review</b><i>2026</i></div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>1,000 SAMPLE POINTS</span><span>43 ITERATIONS</span><span>9.08 s</span><span>QUADRATIC ERROR METRICS</span><span>CENTROIDAL VORONOI TESSELLATION</span><span>COARSE-TO-FINE WEIGHTING</span><span>SUPERLINEAR CONVERGENCE</span>
+      <span>1,000 SAMPLE POINTS</span><span>43 ITERATIONS</span><span>9.08 s</span><span>QUADRATIC ERROR METRICS</span><span>CENTROIDAL VORONOI TESSELLATION</span><span>COARSE-TO-FINE WEIGHTING</span><span>SUPERLINEAR CONVERGENCE</span>
+    </div>
+  </div>
+
+  <section class="teaser-section reveal" aria-label="Teaser">
+    <figure class="teaser-band">
+      <img src="assets/teaser-fig.jpg" width="2000" height="588" alt="LiteMesh simplification results across organic shapes and CAD models" loading="lazy">
     </figure>
-    <section class="abstract-section" id="abstract" aria-labelledby="abstract-title">
-      <div class="text-content">
-        <h2 id="abstract-title">Abstract</h2>
-        <p>Mesh lightweighting facilitates various applications such as digital twins and real-time transmission by substantially reducing representation complexity while maintaining fidelity as much as possible. However, balancing computational cost and lightweighting quality, in terms of triangulation and feature preservation, continues to be challenging, since many previous approaches prioritize a single criterion rather than excelling on both objectives.</p>
-        <p>This paper presents a <strong>unified optimization framework</strong> for efficient mesh lightweighting, particularly for CAD models, by jointly enforcing multiple constraints through a coupled formulation that combines particle-interaction energy with a normaldirection anisotropy term. It targets (1) uniformly distributing surface-constrained movable points to maintain <strong>high triangle quality</strong>, with a simpler and more efficient implementation than the Centroidal Voronoi Tessellation (CVT), and (2) <strong>preserving salient features</strong> in the spirit of Quadric Error Metrics (QEM) within a continuous formulation.</p>
-        <p>Owing to the smooth functional design, the method exhibits superlinear convergence. Comprehensive experimental evaluations further verify that our method significantly surpasses existing lightweighting approaches with respect to mesh quality, computational cost, and feature consistency.</p>
+    <div class="copy" style="margin-top:10px">
+      <span>Teaser — organic shapes on the left, CAD models on the right, all simplified at matching vertex budgets</span>
+    </div>
+  </section>
+
+  <section class="chapter reveal" id="abstract">
+    <div class="chapter-head">
+      <span class="num">01</span>
+      <h2>Abstract</h2>
+      <span class="aside">One objective · three goals</span>
+    </div>
+    <div class="abstract-grid">
+      <div class="prose">
+      <p>Mesh lightweighting facilitates applications such as digital twins and real-time transmission by substantially reducing representation complexity while maintaining fidelity. Balancing computational cost against lightweighting quality — in terms of triangulation and feature preservation — remains difficult, since many previous approaches prioritise a single criterion rather than excelling on both.</p>
+      <p>This paper presents a <strong>unified optimization framework</strong> for efficient mesh lightweighting, particularly for CAD models, by jointly enforcing multiple constraints through a coupled formulation that combines <strong>particle-interaction energy</strong> with a <strong>normal-direction anisotropy term</strong>. It targets (1) uniformly distributing surface-constrained movable points to maintain <strong>high triangle quality</strong>, with a simpler and more efficient implementation than the Centroidal Voronoi Tessellation, and (2) <strong>preserving salient features</strong> in the spirit of Quadric Error Metrics within a continuous formulation.</p>
+      <p>Owing to the smooth functional design the method exhibits <strong>superlinear convergence</strong>. Comprehensive evaluations verify that it surpasses existing lightweighting approaches with respect to mesh quality, computational cost and feature consistency.</p>
+
+      <div class="contrib">
+        <div class="contrib-eyebrow mono">Contributions</div>
+        <ol>
+          <li><b>A coupled energy.</b> Particle interaction and normal-direction anisotropy live in one smooth functional, so point density and feature preservation are optimised together instead of in sequence.</li>
+          <li><b>A simpler objective than CVT.</b> The same regularity as a centroidal Voronoi tessellation, without building Voronoi cells at every step — 43 iterations to the stop criterion on 1,000 points.</li>
+          <li><b>Eight times the throughput.</b> 4.56 s against 37.18 s on the chair at Q<sub>f</sub> 0.86 versus 0.88, with the bevels and bore edges intact.</li>
+        </ol>
       </div>
-    </section>
-    <section class="content-section content-width" id="introduction" aria-labelledby="introduction-title">
-      <h2 id="introduction-title">Introduction</h2>
-      <p>In this work, we introduce a unified optimization framework built on a particle-system formulation, which integrates the goals of geometric fidelity, computational overhead control, and resulting mesh quality into a single, coherent objective, thereby enabling a coherently aligned trade-off between practical performance demands and high-standard mesh outputs.</p>
-      <figure class="video-figure">
-        <video autoplay muted loop playsinline preload="auto" aria-label="LiteMesh method animation">
-          <source src="video.mp4?v=2" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </figure>
-      <p>Mesh simplification aims to reduce complexity to balance the need for visual fidelity with computational efficiency. In past research, QEM can preserve geometry reasonably well, yet it frequently degrades triangle quality and connectivity regularity. Another famous approach is CVT which yield high quality elements, but they are often expensive and less reliable for strict feature alignment. And recent schemes CWF integrate feature fidelity and triangle quality. However, its overall time efficiency is still constrained.</p>
-      <figure class="research-figure">
-        <div class="image-frame"><img src="images/compare/img.png" width="1857" height="437" alt="Visual comparison of related mesh simplification methods" loading="lazy"></div>
-      </figure>
-    </section>
-    <section class="content-section content-width results" id="results" aria-labelledby="results-title">
-      <h2 id="results-title">Results</h2>
-      <figure class="research-figure">
-        <div class="image-frame"><img src="images/compare/CAD_features-original.png?v=2" width="5760" height="2325" alt="Comparison of feature alignment and triangle quality on a CAD model" loading="lazy"></div>
-        <figcaption>Comparison with state-of-the-art methods on CAD input. Our approach demonstrates superior performance in feature alignment and triangle quality. The target number of vertices for both inputs is set at 600.</figcaption>
-      </figure>
-      <figure class="research-figure organic-comparison">
-        <div class="image-frame"><img src="images/compare/weak_features-original.png?v=2" width="5760" height="1894" alt="Complete bunny model comparison showing weak feature preservation across eight methods" loading="lazy"></div>
-        <figcaption>Comparisons on the bunny model using 2000 sample points show that our method can consolidate weak features just like CWF, such as the ears and legs of the bunny model.</figcaption>
-      </figure>
-      <figure class="research-figure">
-        <div class="image-frame"><img src="images/compare/CWFvsOurs-original.png?v=2" width="5760" height="4834" alt="Complete comparison of LiteMesh and CWF on chair and organic models, including mesh quality and runtime" loading="lazy"></div>
-        <figcaption>CWF can take both mesh quality and feature alignment into account. In comparison, we achieve a pronounced reduction in runtime while preserving both geometric fidelity and triangle quality.</figcaption>
-      </figure>
-    </section>
-    <section class="citation-section" id="bibtex" aria-labelledby="citation-title">
-      <div class="text-content">
-        <h2 id="citation-title">Citation</h2>
-        <p>If our work is helpful to you, please cite it:</p>
-        <pre><code>{}</code></pre>
       </div>
-    </section>
-  </main>
-  <footer><p>© 2026 LinXin. All rights reserved.</p></footer>
+
+      <aside class="rail">
+        <figure class="mini" data-float="20">
+          <div class="mini-frame" data-hover>
+            <video id="teaser" autoplay muted loop playsinline preload="metadata"
+                   poster="assets/teaser-poster.jpg" width="880" height="496">
+              <source src="assets/teaser-loop.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption class="mini-cap">
+            <span class="mono">Teaser · 0:52 — 1,000 points, 43 iterations</span>
+          </figcaption>
+        </figure>
+
+        <div class="rail-note mono">
+          <span>1,000 pts</span><span>·</span><span>43 iter</span><span>·</span><span>9.08 s</span>
+        </div>
+
+        <aside class="glance">
+          <div class="glance-eyebrow mono">At a glance</div>
+          <ol>
+            <li>
+              <span class="g-num mono">01</span>
+              <b>Particles, not triangles</b>
+              <p>Movable points are constrained to the surface, so the sampling density and the triangulation are decided by one relaxation instead of by edge collapses.</p>
+            </li>
+            <li>
+              <span class="g-num mono">02</span>
+              <b>Features inside the energy</b>
+              <p>A normal-direction anisotropy term is what keeps a crease a crease — feature preservation is part of the objective, not a post-process.</p>
+            </li>
+            <li>
+              <span class="g-num mono">03</span>
+              <b>Converges superlinearly</b>
+              <p>A 1,000-point CAD-scale run stops at 43 iterations in 9.08 s; the same budget takes CWF 37.18 s on the chair in Fig. 04.</p>
+            </li>
+          </ol>
+        </aside>
+      </aside>
+    </div>
+  </section>
+
+  <section class="chapter reveal" id="method">
+    <div class="chapter-head">
+      <span class="num">02</span>
+      <h2>Method</h2>
+      <span class="aside">Particle system · anisotropic normal term</span>
+    </div>
+    <div class="method-grid">
+      <div>
+        <div class="prose" style="margin-bottom:26px">
+          <p>Surface-constrained movable points are relaxed under a coupled energy: a <strong>particle-interaction</strong> term spreads them evenly over the surface, while a <strong>normal-direction anisotropy</strong> term pulls them onto creases and boundaries. Both goals are expressed in one smooth functional, so the whole thing is solved by plain gradient descent with a superlinear rate.</p>
+          <p>The result is a distribution that is as regular as a CVT but stays anchored to the features that matter for CAD — and it costs a fraction of the iterations.</p>
+        </div>
+
+        <div class="steps-block">
+          <h3 class="mono">Three steps</h3>
+          <ol class="steps">
+            <li>
+              <span class="mono s-num">01</span>
+              <span class="s-body"><b>Place.</b> Scatter seeds over the surface. No Poisson-disc prepass, no collapse priority queue — the positions are the only state.</span>
+            </li>
+            <li>
+              <span class="mono s-num">02</span>
+              <span class="s-body"><b>Relax.</b> One energy runs gradient descent: the interaction term equalises spacing, the anisotropy term pulls points onto creases and boundaries. Fig. 01 shows a single kernel width doing both.</span>
+            </li>
+            <li>
+              <span class="mono s-num">03</span>
+              <span class="s-body"><b>Triangulate.</b> The relaxed set is triangulated once, at the target budget. The 1,000-point run above stops at 43 iterations in 9.08 s.</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="versus">
+          <p><span class="mono">vs CVT</span>Voronoi cells are rebuilt every iteration. Here the same regularity comes out of one smooth energy, so there is no per-step cell construction to pay for.</p>
+          <p><span class="mono">vs QEM</span>A collapse order has to be kept valid around every feature edge. Here features are a term in the objective, so that order never has to exist.</p>
+        </div>
+      </div>
+      <div>
+        <figure class="figure reveal" style="margin:0">
+          <img src="assets/particle-system.png" width="1330" height="1020" alt="Kernel width and even distribution of particles on a banana surface" loading="lazy">
+          <figcaption>Fig. 01 — kernel width · initialisation vs. even distribution</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter reveal" id="results">
+    <div class="chapter-head">
+      <span class="num">03</span>
+      <h2>Results</h2>
+      <span class="aside">Same input · same target vertex count</span>
+    </div>
+
+    <div class="fig-pair">
+      <figure class="figure reveal">
+        <img src="assets/weak-features.jpg" width="2000" height="658" alt="Bunny simplified by eight baselines and by LiteMesh, with ear and haunch close-ups" loading="lazy">
+        <figcaption>Fig. 02 — weak features. Eight baselines against ours on the same vertex budget; only ours keeps the thin ear sheet and the crease on the haunch.</figcaption>
+      </figure>
+
+      <figure class="figure reveal">
+        <img src="assets/cad-features.jpg" width="1900" height="768" alt="A CAD wheel hub simplified by eight baselines and by LiteMesh" loading="lazy">
+        <figcaption>Fig. 03 — CAD features. The socket, the bore and the rim are where QEM- and CVT-based methods give up; the red inset marks where ours keeps the edge loop closed.</figcaption>
+      </figure>
+    </div>
+
+    <div class="prose" style="margin:2px 0 clamp(34px,4vw,56px)">
+      <p>On the CAD input the target socket keeps its crease and its bore stays round under the same vertex budget, while QEM collapses the rim and CVT rounds the corners off. Feature alignment and triangle quality are the two axes where the difference shows.</p>
+    </div>
+
+    <div class="fig-pair pair-asym">
+      <figure class="figure reveal">
+        <img src="assets/cwf-vs-ours.jpg" width="1500" height="1259" alt="Chair and lion head simplified by CWF and by LiteMesh, with quality and time reported for each" loading="lazy">
+        <figcaption>Fig. 04 — quality per second. CWF needs 37.18 s and 64.27 s to reach Q<sub>f</sub> 0.88 / 0.90; ours reaches 0.86 / 0.87 in 4.56 s / 7.13 s — about eight times faster at comparable quality, and without destroying the bevels on the chair or the nostril on the lion.</figcaption>
+      </figure>
+
+      <div class="pair-note">
+        <div class="note-eyebrow mono">Why it matters</div>
+        <p>A lightweighting pass is usually one step inside a CAD pipeline, run again every time the model changes. At eight times the speed it stops being a batch job you schedule and becomes something you can run while you are still editing.</p>
+        <p>The panel on the left is the whole argument: the same vertex budget, the same quality band, one eighth of the clock. Nothing else on this page changes the verdict as fast.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="chapter reveal" id="citation">
+    <div class="chapter-head">
+      <span class="num">04</span>
+      <h2>Citation</h2>
+      <span class="aside">BibTeX</span>
+    </div>
+    <pre class="code" id="bib">@misc{meng2026litemesh,
+  title  = {LiteMesh: An Efficient Quality-Aware Algorithm for
+            Feature-Preserving Triangle Mesh Simplification},
+  author = {Meng, Wenlong and Lin, Xin and Gao, Rui and Tu, Zhiying and
+            Chu, Dianhui and Xin, Shiqing and Tu, Changhe},
+  year   = {2026},
+  note   = {Manuscript under review}
+}</pre>
+    <div class="copy">
+      <button type="button" id="copy-bib">Copy</button>
+      <span id="copy-note">If our work is helpful to you, please cite it.</span>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <a class="chip mono" href="#top">Back to top</a>
+  <span class="spacer"></span>
+  <span>© 2026 LiteMesh · Harbin Institute of Technology · Shandong University</span>
+</footer>
+
+<script>
+(function () {
+  var links = [].slice.call(document.querySelectorAll('.chip[href^="#"]'));
+  var sections = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+
+  function spy() {
+    var y = window.scrollY + 140, current = -1;
+    sections.forEach(function (s, i) { if (s && s.offsetTop <= y) current = i; });
+    links.forEach(function (a, i) {
+      if (i === current) a.setAttribute('aria-current', 'true');
+      else a.removeAttribute('aria-current');
+    });
+  }
+  window.addEventListener('scroll', spy, { passive: true });
+  spy();
+
+  var btn = document.getElementById('copy-bib');
+  var note = document.getElementById('copy-note');
+  if (btn && navigator.clipboard) {
+    btn.addEventListener('click', function () {
+      navigator.clipboard.writeText(document.getElementById('bib').textContent).then(function () {
+        btn.textContent = 'Copied';
+        note.textContent = 'BibTeX copied to the clipboard.';
+        setTimeout(function () { btn.textContent = 'Copy'; note.textContent = 'If our work is helpful to you, please cite it.'; }, 2200);
+      });
+    });
+  }
+})();
+</script>
+<script src="assets/points.js?v=demo-20261020"></script>
+<script src="motion.js?v=demo-20261020"></script>
 </body>
 </html>
