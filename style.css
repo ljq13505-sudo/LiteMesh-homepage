@@ -54,7 +54,9 @@ p { text-align: justify; }
 .abstract-section { padding: 42px 0 46px; background: var(--soft); }
 .abstract-section h2 { font-size: 32px; margin-bottom: 24px; letter-spacing: -.6px; }
 .citation-section h2 { font-size: 26px; margin-bottom: 22px; letter-spacing: -.3px; }
-.abstract-section p { line-height: 1.8; }
+.abstract-section p { line-height: 1.8; text-align: left; }
+.abstract-section p + p { margin-top: 20px; }
+.abstract-section strong { font-weight: 600; }
 .content-section { padding-top: 50px; }
 .content-section > p { margin-left: auto; margin-right: auto; }
 .video-figure { margin: 28px 0; }
